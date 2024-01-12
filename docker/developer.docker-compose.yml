@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  express-jsondb:
+    build:
+      context: .
+      dockerfile: developer.dockerfile
+    image: express-jsondb
+    container_name: express-jsondb
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - app-network
+
+volumes:
+  node_modules:
+
+networks:
+  app-network:
+    driver: bridge
